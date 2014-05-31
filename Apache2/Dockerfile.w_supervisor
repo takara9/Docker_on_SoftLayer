@@ -1,0 +1,45 @@
+#
+# Development environment 
+#
+# Component
+#    Apache2
+#
+
+FROM ubuntu:12.04
+RUN apt-get update 
+RUN apt-get upgrade -y
+RUN apt-get install -y apache2 libapache2-mod-php5 
+RUN apt-get install -y supervisor openssh-server
+#RUN apt-get install -y phpmyadmin
+
+
+RUN mkdir -p /var/run/sshd
+RUN mkdir -p /var/log/supervisor
+#RUN locale-gen en_US en_US.UTF-8
+RUN locale-gen ja_JP ja_JP.UTF-8
+ADD etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN echo 'root:password' | chpasswd
+
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+
+
+RUN rm -f /etc/apache2/sites-enabled/000-default.conf
+ADD etc/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+ADD www /var/www
+
+
+
+# Hack for initctl
+# See: https://github.com/dotcloud/docker/issues/1024
+#
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN rm /sbin/initctl
+RUN ln -s /bin/true /sbin/initctl
+
+EXPOSE 80 22
+
+CMD ["/usr/bin/supervisord"]
