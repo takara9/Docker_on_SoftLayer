@@ -1,8 +1,7 @@
 #
-# Development environment 
-#
-# Component
-#    Apache2
+# Apache HTTP サーバ  
+#   Supervisor を使って、sshd と httpd を動かし
+#   ssh で ログインできる様にする
 #
 
 FROM ubuntu:12.04
