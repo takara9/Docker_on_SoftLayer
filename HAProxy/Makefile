@@ -5,7 +5,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 start:
-	docker run --link mysql:db -d -p 9080:80 $(IMAGE_NAME)
+	docker run --link web1:w1 --link web2:w2 -d -p 9080:80 $(IMAGE_NAME)
 	docker ps $(IMAGE_NAME)
 
 stop:

@@ -1,12 +1,5 @@
 IMAGE_NAME=maho/apache2
-
 DOCKERFILE=Dockerfile.apache2_fg
-PORTCONF1=-p 8080:80
-PORTCONF2=-p 8081:80
-
-#DOCKERFILE=Dockerfile.w_supervisor
-#PORTCONF=-p 8080:80 -p 20022:22
-
 
 build:
 	rm -f Dockerfile
@@ -14,8 +7,8 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 start:
-	docker run --link mysql:db -d $(PORTCONF1) $(IMAGE_NAME)
-	docker run --link mysql:db -d $(PORTCONF2) $(IMAGE_NAME)
+	docker run --name web1 --link mysql:db -d -p 8081:80 $(IMAGE_NAME)
+	docker run --name web2 --link mysql:db -d -p 8082:80 $(IMAGE_NAME)
 	docker ps $(IMAGE_NAME)
 
 stop:
