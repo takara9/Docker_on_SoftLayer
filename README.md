@@ -25,3 +25,5 @@ make clean2 このフォルダのコンテナイメージを削除
 NodeJs MongoDB MySQL Redis Riak  
 
 
+**ここで作成したコンテナイメージは、https://index.docker.io/u/maho/ に保存されています。**
+
