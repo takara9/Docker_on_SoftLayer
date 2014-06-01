@@ -21,6 +21,7 @@ make clean1 すべての終了したコンテナを削除
 make clean2 このフォルダのコンテナイメージを削除  
 
 ###実行までの手順
+
 ####MySQLサーバーの起動
 1. cd MySQL2
 2. make build
@@ -31,16 +32,21 @@ make clean2 このフォルダのコンテナイメージを削除
 2. make build
 3. make start これで２つのコンテナが起動します。
 
-
 ####HAProxyの起動
 1. cd HAProxy
-2. docker ps  HTTP サーバーの CONTAINER ID を調べる
-3. docker inspect <CONTAINER ID> |grep IPA で、２つのHTTPサーバーのIPアドレスをしらべる
-4. etc/haproxy.cfg の server lamp1, lamp2 のIPアドレスを修正する
-5. make build
-6. make start
-7. ufw allow 9080 ファイアウォールの設定で、TCP 9080ポートを開放してください
+2. make build
+3. make start
+4. ufw allow 9080 ファイアウォールの設定で、TCP 9080ポートを開放してください
 
+####一括起動
+1. make all
+2. make start
+
+####一括停止
+1. make stop
+
+####一括イメージ削除
+2. make clean
 
 
 
