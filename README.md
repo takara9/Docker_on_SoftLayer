@@ -44,7 +44,7 @@ make clean2 このフォルダのコンテナイメージを削除
 
 
 
-#SoftLayerのDocker上で、Node.js, Redis, MongoDB, MySQL, Riakを動かしてみた
+##SoftLayerのDocker上で、Node.js, Redis, MongoDB, MySQL, Riakを動かしてみた
 リンク http://goo.gl/bkPA1m  でご紹介したコンテナ作成に使用した*Dockerfile*を収めてあります。  
 NodeJs MongoDB MySQL Redis Riak  
 
