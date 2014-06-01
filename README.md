@@ -3,7 +3,7 @@ Docker_on_SoftLayer
 
 Dockerfiles for Sample Container
 
-##Dockerのコンテナで水平分散クラスタを構築する
+##Dockerのコンテナで 水平分散ウェブ クラスタを構築する
 
 ###フォルダの説明
 

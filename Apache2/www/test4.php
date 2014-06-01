@@ -1,7 +1,7 @@
 <html>
 <head><title>PHP TEST2</title></head>
 <body>
-
+<h1>Test4: Check for SQL query</h1>
 <?php
 $db_tcp_addr = getenv('DB_PORT_3306_TCP_ADDR');
 $db_tcp_port = getenv('DB_PORT_3306_TCP_PORT');

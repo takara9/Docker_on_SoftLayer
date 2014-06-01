@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -f /etc/haproxy/haproxy.cfg.org ]; then
+   mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.org;
+fi
+
+cat /etc/haproxy/haproxy.cfg.org - <<EOF > /etc/haproxy/haproxy.cfg
+        server web1 $W1_PORT_80_TCP_ADDR check inter 2000 rise 2 fall 5
+        server web2 $W2_PORT_80_TCP_ADDR check inter 2000 rise 2 fall 5
+EOF
+
+
+/usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -d
