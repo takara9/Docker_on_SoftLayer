@@ -1,0 +1,17 @@
+#!/bin/bash
+
+docker pull maho/mysql2
+docker pull maho/apache2
+
+cd MySQL2
+rm -f Dockerfile
+ln -s Dockerfile.centos Dockerfile
+docker run --name mysql -d -p 13306:3306 maho/mysql2
+cd ..
+
+cd Apache2
+rm -f Dockerfile
+ln -s Dockerfile.apache2 Dockerfile
+docker run --name web1 --link mysql:db -d -p 8081:80 maho/apache2
+docker run --name web2 --link mysql:db -d -p 8082:80 maho/apache2
+cd ..
