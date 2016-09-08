@@ -23,3 +23,5 @@ ln -s Dockerfile.lvs Dockerfile
 docker run --link web1:w1 --link web2:w2 -d -p 9080:80 maho/haproxy
 cd ..
 
+docker ps
+
