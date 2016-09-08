@@ -2,6 +2,7 @@
 
 docker pull maho/mysql2
 docker pull maho/apache2
+docker pull maho/haproxy
 
 cd MySQL2
 rm -f Dockerfile
@@ -15,3 +16,10 @@ ln -s Dockerfile.apache2 Dockerfile
 docker run --name web1 --link mysql:db -d -p 8081:80 maho/apache2
 docker run --name web2 --link mysql:db -d -p 8082:80 maho/apache2
 cd ..
+
+cd HAProxy
+rm -f Dockerfile
+ln -s Dockerfile.lvs Dockerfile
+docker run --link web1:w1 --link web2:w2 -d -p 9080:80 maho/haproxy
+cd ..
+
